@@ -1,6 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 
+import background from "../assets/images/background.svg";
+
 export default createGlobalStyle`
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
     *{
         margin: 0;
         padding: 0;
@@ -8,19 +13,13 @@ export default createGlobalStyle`
         box-sizing: border-box;
     }
 
-    html, body, #app {
-        min-height: 100%;
-    }
-
     body {
-        background: #7159c1;
+        background: #F5F5F5;
         -webkit-font-smoothing: antialiased !important;
     }
 
     body, input, button {
-        color: #222;
-        font-size: 14px;
-        font-family: Arial, Helvetica, sans-serif;
+        font: 14px Roboto, sans-serif;
     }
 
     button {
