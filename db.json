@@ -23,6 +23,14 @@
     {
       "id": 6,
       "amount": 2
+    },
+    {
+      "id": 7,
+      "amount": 10
+    },
+    {
+      "id": 8,
+      "amount": 5
     }
   ],
   "products": [
@@ -67,6 +75,20 @@
       "author": "Richard Osman",
       "price": 7,
       "image": "https://m.media-amazon.com/images/I/71f5EShRDbS.SR160,240_BG243,243,243.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Game On, Puppy!: The fun, transformative approach to training your puppy from the founders of Absolute Dogs",
+      "author": "Tom Mitchell",
+      "price": 14.95,
+      "image": "https://m.media-amazon.com/images/I/51Mm15mxiEL._SX498_BO1,204,203,200_.jpg"
+    },
+    {
+      "id": 8,
+      "title": "J.K. Rowling Harry Potter Collection 7 Books Bundle",
+      "author": "J.K. Rowling",
+      "price": 39.75,
+      "image": "https://m.media-amazon.com/images/I/51lQ1FXnWlL._SX460_BO1,204,203,200_.jpg"
     }
   ]
 }

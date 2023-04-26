@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import AppRoutes from "./routes";
 import "./config/ReactotronConfig";
+import { ToastContainer } from "react-toastify";
 
 import GlobalStyle from "./styles/global";
 import Header from "./components/Header";
@@ -16,6 +17,7 @@ function App() {
           <Header />
           <AppRoutes />
           <GlobalStyle />
+          <ToastContainer autoClose={1000} position="bottom-right"/>
         </BrowserRouter>
       </Provider>
   );

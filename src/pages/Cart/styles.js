@@ -53,12 +53,13 @@ export const ProductTable = styled.table`
 
     strong {
         display: block;
+        font-size: 16px;
     }
 
     span {
         display: block;
-        margin-top: 5px;
-        font-size: 16px;
+        margin-top: 10px;
+        font-size: 18px;
         font-weight: bold;
     }
 
@@ -97,4 +98,15 @@ export const Total = styled.div`
         font-size: 20px;
         margin-left: 5px;
     }
+`;
+
+export const EmptyCart = styled.div`
+    padding: 30px;
+    margin: 0 auto;
+    border-radius: 4px;
+    width: 50%;
+
+    text-align: center;
+
+    background: #A0A0A0;
 `;

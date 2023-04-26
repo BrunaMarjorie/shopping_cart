@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { ProductList } from "./styles";
 import api from "../../services/api";
 import { formatPrice } from "../../util/format";
-import { addToCart } from "../../store/slices/cart/thunk";
+import { addingToCart } from "../../store/slices/cart/thunk";
 
 
 class Home extends Component {
@@ -26,7 +26,7 @@ class Home extends Component {
     handleAddProduct = id => {
         const { dispatch } = this.props;
 
-        dispatch(addToCart(id));
+        dispatch(addingToCart(id));
     }
 
     render() {

@@ -1,9 +1,9 @@
 import React from "react";
 import { MdRemoveCircleOutline, MdAddCircleOutline, MdDelete } from "react-icons/md"
-import { Container, ProductTable, Total } from "./styles";
+import { Container, ProductTable, Total, EmptyCart } from "./styles";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart, updateAmount } from "../../store/slices/cart/reducer";
 import { formatPrice } from "../../util/format";
+import { updatingCart, removingFromCart } from "../../store/slices/cart/thunk";
 
 export default function Cart() {
     const { products } = useSelector((state) => state.cart);
@@ -19,10 +19,9 @@ export default function Cart() {
    
    total = formatPrice(total);
 
-   console.log(products)
-
     return (
-    <Container>
+    <>
+    <Container hidden={products.length === 0}>
         <ProductTable>
             <thead>
                 <tr>
@@ -41,15 +40,16 @@ export default function Cart() {
                 </td>
                 <td>
                     <strong>{product.title}</strong>
+                    <p>by {product.author}</p>
                     <span>{product.formattedPrice}</span>
                 </td>
                 <td>
                     <div>
-                        <button type="button" onClick={() => dispatch(updateAmount({product: product, amount: -1}))}>
+                        <button type="button" onClick={() => dispatch(updatingCart({productId: product.id, amount: -1}))}>
                             <MdRemoveCircleOutline size={20} color="#7159c1"/>
                         </button>
                         <input type="number" readOnly value={product.amount}/>
-                        <button type="button" onClick={() => dispatch(updateAmount({product: product, amount: 1}))}>
+                        <button type="button" onClick={() => dispatch(updatingCart({productId: product.id, amount: 1}))}>
                             <MdAddCircleOutline size={20} color="#7159c1"/>
                     </button>
                     </div>
@@ -58,7 +58,7 @@ export default function Cart() {
                     <span>{product.subTotal}</span>
                 </td>
                 <td>
-                    <button type="button" onClick={() => dispatch(removeFromCart(product.id))}>
+                    <button type="button" onClick={() => dispatch(removingFromCart({productId: product.id, amount: product.amount}))}>
                         <MdDelete size={20} color="7159c1"/>
                     </button>
                 </td>
@@ -75,5 +75,13 @@ export default function Cart() {
                 <strong>{total}</strong>
             </Total>
         </footer>
-    </Container>);
+    </Container>
+    
+    <EmptyCart hidden={products.length > 0}>
+        <h3>
+            Your Shopping Cart is empty.
+        </h3>
+    </EmptyCart>
+    </>
+    );
 }

@@ -1,5 +1,6 @@
-import { createSlice, current } from "@reduxjs/toolkit";
-import { addToCart } from "./thunk";
+import { createSlice } from "@reduxjs/toolkit";
+import { formatPrice } from "../../../util/format";
+// import { addToCart } from "./thunk";
 
 
 export const cartSlice = createSlice({
@@ -8,6 +9,14 @@ export const cartSlice = createSlice({
         products: []
     },
     reducers: {
+        addToCart: (state, action) => {
+            const product = action.payload;
+
+            product.amount = 1;
+            product.formattedPrice = formatPrice(product.price);
+            state.products.push(product);
+        },
+
         removeFromCart: (state, action) => {
             const productIndex = state.products.findIndex(e => e.id === action.payload);
 
@@ -28,14 +37,7 @@ export const cartSlice = createSlice({
             }
         }
     },
-    extraReducers: (builder) => {
-        builder.addCase(addToCart.fulfilled, (state, { payload }) => console.log(current(state)));
-
-        // builder.addCase(getProductById.rejected, (state, { payload }) => {
-        //     console.log(payload)
-        // })
-    }
 });
 
-export const { removeFromCart, updateAmount } = cartSlice.actions;
+export const { addToCart, removeFromCart, updateAmount } = cartSlice.actions;
 export default cartSlice.reducer;
