@@ -7,7 +7,7 @@ import logo from "../../assets/images/logo2.png";
 
 
 export default function Header() {
-    const { products } = useSelector((state) => state.cart);
+    const cartSize = useSelector((state) => state.cart.products.length);
 
     return (
     <Container>
@@ -18,7 +18,7 @@ export default function Header() {
         <Cart to="/cart">
             <div>
                 <strong>My Cart</strong>
-                <span>{products.length} item(s)</span>
+                <span>{cartSize} item(s)</span>
 
             </div>
             <MdShoppingBasket size={36} color="#FFF"/>

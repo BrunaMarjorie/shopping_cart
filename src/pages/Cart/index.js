@@ -6,18 +6,18 @@ import { formatPrice } from "../../util/format";
 import { updatingCart, removingFromCart } from "../../store/slices/cart/thunk";
 
 export default function Cart() {
-    const { products } = useSelector((state) => state.cart);
-    const dispatch = useDispatch();
-    let total = 0;
- 
-    const cartProducts = products.map(product => ({
+    const products = useSelector((state) => state.cart.products.map(product => ({
         ...product,
         subTotal: formatPrice(product.price * product.amount),
-    }));
-
-   products.forEach((product) => total += product.price * product.amount);
+    })));
    
-   total = formatPrice(total);
+    const total = useSelector(state => formatPrice(
+        state.cart.products.reduce((total, product) => {
+            return total + product.price * product.amount
+        }, 0)
+    ));
+
+    const dispatch = useDispatch();
 
     return (
     <>
@@ -33,7 +33,7 @@ export default function Cart() {
                 </tr>
             </thead>
             <tbody>
-            {cartProducts.map(product => (
+            {products.map(product => (
                 <tr key={product.id}>
                 <td>
                     <img src={product.image} alt={product.title}/>
